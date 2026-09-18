@@ -1,0 +1,66 @@
+[project]
+name = "rich-help"
+description = "Format and colorize command help pages."
+readme = "README.md"
+authors = [{ name = "Max Ludden", email = "maxludden@me.com" }]
+license = "MIT"
+requires-python = ">=3.11"
+keywords = ["rich", "cli", "help", "terminal", "color", "formatting"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Documentation",
+    "Topic :: Terminals",
+    "Topic :: Text Processing :: Filters",
+]
+dependencies = ["rich>=13.7"]
+dynamic = ["version"]
+
+[project.scripts]
+rich-help = "rich_help.cli:entrypoint"
+
+[project.urls]
+Homepage = "https://github.com/maxludden/rich-help"
+Repository = "https://github.com/maxludden/rich-help"
+Issues = "https://github.com/maxludden/rich-help/issues"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/rich_help"]
+
+[tool.hatch.version]
+path = "src/rich_help/__init__.py"
+
+[dependency-groups]
+dev = [
+    "mypy>=1.11",
+    "pytest>=8.3",
+    "pytest-cov>=5.0",
+    "ruff>=0.6",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q --strict-markers --strict-config"
+
+[tool.mypy]
+files = ["src"]
+ignore_missing_imports = true
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B"]
+ignore = [
+    "E501", # long lines are unavoidable in the sample-bearing docstrings
+]

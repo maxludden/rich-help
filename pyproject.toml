@@ -64,3 +64,7 @@ select = ["E", "F", "W", "I", "UP", "B"]
 ignore = [
     "E501", # long lines are unavoidable in the sample-bearing docstrings
 ]
+
+[tool.pymarkdown]
+plugins.md033.enabled = false
+plugins.MD013.enabled = false
